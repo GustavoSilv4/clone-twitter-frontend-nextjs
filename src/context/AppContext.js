@@ -45,12 +45,11 @@ export function AuthProvider({ children }) {
         }
     };
 
-    const token = ''
 
     const getData = async () => {
         const res = await api.get('/tweets', {
             headers: {
-                'authorization': `Bearer ${token}`
+                'authorization': `Bearer ${user.accessToken}`
             }
         })
         setData(res.data)

@@ -22,7 +22,7 @@ const Home = () => {
             <TweetForm avatar='/image-default.svg' />
             <div>
                 {data.length && data.map((tweet) => (
-                    <Tweet name={tweet.user.name} username={tweet.user.username} avatar='/image-default.svg'>
+                    <Tweet key={tweet.id} name={tweet.user.name} username={tweet.user.username} avatar='/image-default.svg'>
                         {tweet.text}
                     </Tweet>
                 ))
