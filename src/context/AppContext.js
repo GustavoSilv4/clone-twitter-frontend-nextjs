@@ -8,6 +8,7 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
     const [user, setUser] = useState()
     const [error, setError] = useState()
+    const [data, setData] = useState([])
 
     const router = useRouter();
 
@@ -44,9 +45,20 @@ export function AuthProvider({ children }) {
         }
     };
 
+    const token = ''
+
+    const getData = async () => {
+        const res = await api.get('/tweets', {
+            headers: {
+                'authorization': `Bearer ${token}`
+            }
+        })
+        setData(res.data)
+    }
 
 
-    return <AuthContext.Provider value={{ user, signin, signup, error }}>{children}</AuthContext.Provider>
+
+    return <AuthContext.Provider value={{ user, signin, signup, error, getData, data }}>{children}</AuthContext.Provider>
 }
 
 export default AuthContext;

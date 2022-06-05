@@ -5,8 +5,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react';
 
 const Home = () => {
-    const { user } = useAuth();
-
+    const { user, getData, data } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
@@ -14,19 +13,21 @@ const Home = () => {
             router.push('/');
             return
         }
+
+        getData()
     }, [])
 
     return (
         <>
             <TweetForm avatar='/image-default.svg' />
             <div>
-                <Tweet name='Elon Musk' username='elonmusk' avatar='/image-default.svg'>
-                    Let`s make Twitter maximun fun!
-                </Tweet>
+                {data.length && data.map((tweet) => (
+                    <Tweet name={tweet.user.name} username={tweet.user.username} avatar='/image-default.svg'>
+                        {tweet.text}
+                    </Tweet>
+                ))
+                }
 
-                <Tweet name='Gustavo Silva' username='gustavosilv4' avatar='/image-default.svg'>
-                    Let`s make Twitter maximun awesome!
-                </Tweet>
             </div>
         </>
     )
