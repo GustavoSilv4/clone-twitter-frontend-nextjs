@@ -46,6 +46,7 @@ export function AuthProvider({ children }) {
     };
 
 
+
     const getData = async () => {
         const res = await api.get('/tweets', {
             headers: {
@@ -57,7 +58,27 @@ export function AuthProvider({ children }) {
 
 
 
-    return <AuthContext.Provider value={{ user, signin, signup, error, getData, data }}>{children}</AuthContext.Provider>
+
+    async function submitTweet(values) {  // Resolver problema de nao realizar o post - Resolvido passar o hearder atraves de uma variavel separada da funcao e do data
+        try {
+            const headers = {
+                'content-Type': 'application/json',
+                'authorization': `Bearer ${user.accessToken}`
+            }
+            let data = {
+                text: values.text
+            }
+            await api.post('/tweets', data, {
+                headers: headers
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
+    return <AuthContext.Provider value={{ user, signin, signup, error, getData, data, submitTweet }}>{children}</AuthContext.Provider>
 }
 
 export default AuthContext;

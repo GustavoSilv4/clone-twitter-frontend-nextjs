@@ -19,7 +19,7 @@ const Home = () => {
 
     return (
         <>
-            <TweetForm avatar='/image-default.svg' />
+            <TweetForm avatar='/image-default.svg' onSuccess={getData} />
             <div>
                 {data.length && data.map((tweet) => (
                     <Tweet key={tweet.id} name={tweet.user.name} username={tweet.user.username} avatar='/image-default.svg'>
