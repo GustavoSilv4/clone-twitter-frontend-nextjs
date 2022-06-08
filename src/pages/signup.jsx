@@ -16,7 +16,7 @@ const validationSchema = yup.object({
 
 const SignUp = () => {
 
-    const { signup, error } = useAuth();
+    const { signup, errorSignUp } = useAuth();
 
     const formik = useFormik({
         onSubmit: async values => {
@@ -109,7 +109,7 @@ const SignUp = () => {
 
             </form>
 
-            <span className='text-red-500 text-md text-center'>{error}</span>
+            <span className='text-red-500 text-md text-center'>{errorSignUp}</span>
             <span className="text-sm text-silver">Tem uma conta? <Link href='/'><a className="text-birdBlue">Acesse</a></Link></span>
         </div>
     )

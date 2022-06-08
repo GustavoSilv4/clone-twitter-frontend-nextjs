@@ -21,7 +21,7 @@ const Home = () => {
         <>
             <TweetForm avatar='/image-default.svg' onSuccess={getData} />
             <div>
-                {data.length && data.map((tweet) => (
+                {data.reverse().map((tweet) => (
                     <Tweet key={tweet.id} name={tweet.user.name} username={tweet.user.username} avatar='/image-default.svg'>
                         {tweet.text}
                     </Tweet>

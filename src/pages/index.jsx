@@ -15,7 +15,7 @@ const validationSchema = yup.object({
 
 const SignIn = () => {
 
-    const { error, signin } = useAuth();
+    const { errorSignIn, signin } = useAuth();
 
     const router = useRouter();
 
@@ -34,10 +34,14 @@ const SignIn = () => {
 
     return (
         <div className='h-full flex justify-center'>
-            <div className='bg-birdBlue lg:flex-1'></div>
+            <div className='bg-birdBlue lg:flex-1'>
+                <div className='h-full flex justify-center items-center'>
+                    <img className='items-center h-96' src='/Logo.png' />
+                </div>
+            </div>
             <div className='flex-1 flex justify-center items-center p-12 space-x-6'>
-                <div className="max-w-md flex-1">
-                    <h1 className="text-3xl">Acesse sua conta</h1>
+                <div className="max-w-md flex-1 ">
+                    <h1 className="text-5xl mb-10 font-bold">Fazer Login</h1>
 
                     <form className="space-y-6" onSubmit={formik.handleSubmit}>
 
@@ -79,8 +83,12 @@ const SignIn = () => {
                         </button>
                     </form>
 
-                    <span className='text-red-500 text-md text-center'>{error}</span>
-                    <span className="text-sm text-silver">Não tem conta? <Link href='/signup'><a className="text-birdBlue">Inscreva-se</a></Link></span>
+                    <div className='flex flex-col text-center space-y-2 mt-3'>
+                        <span className='text-red-500 text-md text-center '>{errorSignIn == "Not Found" ? 'Dados incorretos' : errorSignIn}</span>
+
+                        <span className="text-sm text-silver">Não tem conta? <Link href='/signup'><a className="text-birdBlue">Inscreva-se</a></Link></span>
+                    </div>
+
                 </div>
             </div>
         </div>

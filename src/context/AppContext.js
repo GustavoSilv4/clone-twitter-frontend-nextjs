@@ -7,9 +7,9 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState()
-    const [error, setError] = useState()
+    const [errorSignIn, setErrorSignIn] = useState()
+    const [errorSignUp, setErrorSignUp] = useState()
     const [data, setData] = useState([])
-
     const router = useRouter();
 
     const signin = async (values) => {
@@ -21,10 +21,10 @@ export function AuthProvider({ children }) {
                 }
             })
             setUser(res.data)
-            setError()
+            setErrorSignIn()
             router.push('/home')
         } catch (error) {
-            setError(error.response.data)
+            setErrorSignIn(error.response.data)
         }
     };
 
@@ -38,13 +38,12 @@ export function AuthProvider({ children }) {
 
             })
             setUser(res.data)
-            setError()
+            setErrorSignUp()
             router.push('/home')
         } catch (error) {
-            setError(error.response.data)
+            setErrorSignUp(error.response.data)
         }
     };
-
 
 
     const getData = async () => {
@@ -78,7 +77,7 @@ export function AuthProvider({ children }) {
 
 
 
-    return <AuthContext.Provider value={{ user, signin, signup, error, getData, data, submitTweet }}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{ user, signin, signup, errorSignUp, errorSignIn, getData, data, submitTweet }}>{children}</AuthContext.Provider>
 }
 
 export default AuthContext;
