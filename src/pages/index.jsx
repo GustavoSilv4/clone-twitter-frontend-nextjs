@@ -34,7 +34,7 @@ const SignIn = () => {
 
     return (
         <div className='h-full flex justify-center'>
-            <div className='bg-birdBlue lg:flex-1'>
+            <div className='bg-birdBlue md:flex-1 lg:flex-1'>
                 <div className='h-full flex justify-center items-center'>
                     <img className='sm-max:hidden md:items-center md:h-96 lg:items-center lg:h-96' src='/Logo.png' />
                 </div>
